@@ -1,0 +1,11 @@
+{
+    "name": "testemadeira",
+    "description": "Projeto Biblioteca Madeira",
+    "homepage": "https://github.com/tifabio/testemadeira",
+    "require": {
+        "php": ">=5.5",
+        "zendframework/zendframework": "~2.5",
+        "zendframework/zftool": "^0.1.0",
+        "doctrine/doctrine-orm-module": "0.*"
+    }
+}
