@@ -11,6 +11,8 @@ class IndexController extends AbstractActionController
 {
     public function indexAction()
     {
+        $this->layout()->setVariable('title', 'Dashboard');
+        
         return new ViewModel();
     }
 }

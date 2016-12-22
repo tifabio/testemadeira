@@ -17,6 +17,21 @@ return array(
                     ),
                 ),
             ),
+            
+            'categorialivro' => array(
+                'type'    => 'segment',
+                'options' => array(
+                    'route'    => '/admin/categorialivro[/:action][/:id]',
+                    'constraints' => array(
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'CategoriaLivro\Controller\Index',
+                        'action'     => 'index',
+                    ),
+                ),
+            ),
+            
             // The following is a route to simplify getting started creating
             // new controllers and actions without needing to create a new
             // module. Simply drop new controllers in, and you can access them
@@ -36,7 +51,7 @@ return array(
                     'default' => array(
                         'type'    => 'Segment',
                         'options' => array(
-                            'route'    => '/[:controller[/:action]]',
+                            'route'    => '/[:controller[/:action][/:id]]',
                             'constraints' => array(
                                 'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
                                 'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
@@ -56,7 +71,8 @@ return array(
         ),
         'factories' => array(
             'translator' => 'Zend\Mvc\Service\TranslatorServiceFactory',
-        ),
+            'categoria_livro_factory' => 'Admin\Factory\CategoriaLivroFactory'
+        )
     ),
     'translator' => array(
         'locale' => 'en_US',
@@ -70,8 +86,9 @@ return array(
     ),
     'controllers' => array(
         'invokables' => array(
-            'Admin\Controller\Index' => Controller\IndexController::class
-        ),
+            'Admin\Controller\Index' => Controller\IndexController::class,
+            'Admin\Controller\CategoriaLivro' => Controller\CategoriaLivroController::class
+        )
     ),
     'view_manager' => array(
         'display_not_found_reason' => true,
@@ -89,6 +106,13 @@ return array(
             __DIR__ . '/../view',
         ),
     ),
+    'view_helper_config' => array(
+        'flashmessenger' => array(
+            'message_open_format'      => '<div%s><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><p>',
+            'message_close_string'     => '</p></div>',
+            'message_separator_string' => '</p><p>'
+        )
+    ),
     // Placeholder for console routes
     'console' => array(
         'router' => array(
@@ -96,4 +120,19 @@ return array(
             ),
         ),
     ),
+    // Doctrine config
+    'doctrine' => array(
+        'driver' => array(
+            'app_driver' => array(
+                'class' => 'Doctrine\ORM\Mapping\Driver\AnnotationDriver',
+                'cache' => 'array',
+                'paths' => array(__DIR__ . '/src/Admin/Model')
+            ),
+            'orm_default' => array(
+                'drivers' => array(
+                    'Admin\Model' => 'app_driver'
+                )
+            )
+        )
+    )
 );

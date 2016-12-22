@@ -15,7 +15,8 @@
                         ->prependStylesheet('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
                         ->prependStylesheet($this->basePath('adminlte/dist/css/AdminLTE.min.css'))
                         ->prependStylesheet($this->basePath('adminlte/dist/css/skins/_all-skins.min.css'))
-                        ->prependStylesheet($this->basePath('adminlte/bootstrap/css/bootstrap.min.css')) 
+                        ->prependStylesheet($this->basePath('adminlte/bootstrap/css/bootstrap.min.css'))
+                        ->prependStylesheet($this->basePath('adminlte/plugins/datatables/dataTables.bootstrap.css')) 
                         ->prependStylesheet($this->basePath('css/style.css')) ?>
 
         <!-- Scripts -->
@@ -33,7 +34,7 @@
         
           <header class="main-header">
             <!-- Logo -->
-            <a href="<?= $this->url('home') ?>" class="logo">
+            <a href="<?= $this->url('admin') ?>" class="logo">
               <!-- mini logo for sidebar mini 50x50 pixels -->
               <span class="logo-mini"><b>BMA</b></span>
               <!-- logo for regular state and mobile devices -->
@@ -93,7 +94,7 @@
               <ul class="sidebar-menu">
                 <li><a href="#"><i class="fa fa-users"></i> <span>Usuários</span></a></li>
                 <li><a href="#"><i class="fa fa-vcard"></i> <span>Locatários</span></a></li>
-                <li><a href="#"><i class="fa fa-list-ul"></i> <span>Categoria de livros</span></a></li>
+                <li><a href="<?= $this->url('categorialivro') ?>"><i class="fa fa-list-ul"></i> <span>Categorias de livro</span></a></li>
                 <li><a href="#"><i class="fa fa-book"></i> <span>Livros</span></a></li>
                 <li><a href="#"><i class="fa fa-calendar"></i> <span>Empréstimos</span></a></li>
             </section>
@@ -106,7 +107,7 @@
           <div class="content-wrapper">
             <!-- Content Header (Page header) -->
             <section class="content-header">
-              <h1>Dashboard</h1>
+              <h1><?= $this->layout()->title; ?></h1>
             </section>
         
             <!-- Main content -->
