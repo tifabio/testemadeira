@@ -7,15 +7,15 @@ namespace Admin\Controller;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
-class CategoriaLivroController extends AbstractActionController
+class LivroController extends AbstractActionController
 {
     
     public function indexAction()
     {
-        $service = $this->getServiceLocator()->get('categoria_livro_factory');
+        $service = $this->getServiceLocator()->get('livro_factory');
         $lista = $service->getAll();
         
-        $this->layout()->setVariable('title', 'Categorias de livro');
+        $this->layout()->setVariable('title', 'Livros');
         
         return new ViewModel(array('lista' => $lista));
     }
@@ -23,16 +23,16 @@ class CategoriaLivroController extends AbstractActionController
     public function cadastrarAction()
     {
         try {
-            $this->layout()->setVariable('title', 'Nova categoria');
+            $this->layout()->setVariable('title', 'Novo livro');
             
-            $service = $this->getServiceLocator()->get('categoria_livro_factory');
+            $service = $this->getServiceLocator()->get('livro_factory');
             
             $request = $this->getRequest();
             
             if($request->isPost()) {
                 $service->save($request);
-                $this->flashMessenger()->addSuccessMessage('Categoria salva com sucesso');
-                return $this->redirect()->toRoute('categorialivro');    
+                $this->flashMessenger()->addSuccessMessage('Livro salvo com sucesso');
+                return $this->redirect()->toRoute('livro');    
             }
             
             return new ViewModel(array('form' => $service->getForm()));
@@ -45,21 +45,21 @@ class CategoriaLivroController extends AbstractActionController
     public function editarAction()
     {
         try {
-            $this->layout()->setVariable('title', 'Editar categoria');
+            $this->layout()->setVariable('title', 'Editar livro');
             
-            $service = $this->getServiceLocator()->get('categoria_livro_factory');
+            $service = $this->getServiceLocator()->get('livro_factory');
             
             $request = $this->getRequest();
             
             if($request->isPost()) {
                 $service->save($this->getRequest());
-                $this->flashMessenger()->addSuccessMessage('Categoria editada com sucesso');
-                return $this->redirect()->toRoute('categorialivro');
+                $this->flashMessenger()->addSuccessMessage('Livro editado com sucesso');
+                return $this->redirect()->toRoute('livro');
             }
             
             $id = $this->params()->fromRoute("id", 0);
             
-            if($id == 0) return $this->redirect()->toRoute('categorialivro');
+            if($id == 0) return $this->redirect()->toRoute('livro');
     
             return new ViewModel(array('entity' => $entity, 'form' => $service->getForm($id)));
         } catch (\Exception $e) {
@@ -71,16 +71,16 @@ class CategoriaLivroController extends AbstractActionController
     public function excluirAction()
     {
         try {
-            $service = $this->getServiceLocator()->get('categoria_livro_factory');
-        
+            $service = $this->getServiceLocator()->get('livro_factory');
+            
             $id = $this->params()->fromRoute("id", 0);
             
-            if($id == 0) return $this->redirect()->toRoute('categorialivro');
+            if($id == 0) return $this->redirect()->toRoute('livro');
             
             $service->delete($id);
-            $this->flashMessenger()->addSuccessMessage('Categoria excluída com sucesso');
+            $this->flashMessenger()->addSuccessMessage('Livro excluído com sucesso');
             
-            return $this->redirect()->toRoute('categorialivro');
+            return $this->redirect()->toRoute('livro');
         } catch (\Exception $e) {
             $this->flashMessenger()->addErrorMessage('Ocorreu um erro: ' . $e->getMessage());
             return $this->redirect()->toRoute('livro');
