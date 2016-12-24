@@ -16,7 +16,7 @@ class CategoriaLivroForm extends Form
             'attributes' => array(
                 'id' => 'titulo',
                 'class' => 'form-control',
-                'placeholder' => 'Preencha o título da descrição',
+                'placeholder' => 'Preencha o título da categoria',
                 'required' => 'required',
                 'pattern' => '.{3,}'
             ),

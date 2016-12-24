@@ -4,7 +4,7 @@ namespace Admin\Form;
 
 use Zend\Form\Form;
    
-class LivroForm extends Form
+class UsuarioForm extends Form
 {
     public function __construct($name = null)
     {
@@ -14,9 +14,9 @@ class LivroForm extends Form
             'name' => 'nome',
             'type' => 'Text',
             'attributes' => array(
-                'id' => 'nome',
+                'id' => 'titulo',
                 'class' => 'form-control',
-                'placeholder' => 'Preencha o nome do livro',
+                'placeholder' => 'Preencha o nome do usuário',
                 'required' => 'required',
                 'pattern' => '.{3,}'
             ),
@@ -26,30 +26,42 @@ class LivroForm extends Form
         ));
         
         $this->add(array(
-            'name' => 'categoria',
+            'name' => 'tipo',
             'type' => 'Select',
             'attributes' => array(
-                'id' => 'categoria',
+                'id' => 'tipo',
                 'class' => 'form-control',
                 'required' => 'required'
             ),
             'options' => array(
-                'label' => 'Categoria',
+                'label' => 'Tipo',
             )
         ));
         
         $this->add(array(
-            'name' => 'quantidade',
-            'type' => 'Text',
+            'name' => 'email',
+            'type' => 'Email',
             'attributes' => array(
-                'id' => 'quantidade',
+                'id' => 'email',
                 'class' => 'form-control',
-                'placeholder' => 'Preencha a quantidade de livros',
-                'required' => 'required',
-                'pattern' => '.{1,}'
+                'placeholder' => 'Preencha o email do usuário',
+                'required' => 'required'
             ),
             'options' => array(
-                'label' => 'Quantidade',
+                'label' => 'Email',
+            )
+        ));
+        
+        $this->add(array(
+            'name' => 'senha',
+            'type' => 'Password',
+            'attributes' => array(
+                'id' => 'senha',
+                'class' => 'form-control',
+                'placeholder' => 'Preencha para alterar a senha do usuário'
+            ),
+            'options' => array(
+                'label' => 'Senha',
             )
         ));
         

@@ -46,6 +46,20 @@ return array(
                 ),
             ),
             
+            'usuario' => array(
+                'type'    => 'segment',
+                'options' => array(
+                    'route'    => '/admin/usuario[/:action][/:id]',
+                    'constraints' => array(
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Usuario\Controller\Index',
+                        'action'     => 'index',
+                    ),
+                ),
+            ),
+            
             // The following is a route to simplify getting started creating
             // new controllers and actions without needing to create a new
             // module. Simply drop new controllers in, and you can access them
@@ -87,6 +101,7 @@ return array(
             'translator' => 'Zend\Mvc\Service\TranslatorServiceFactory',
             'categoria_livro_factory' => 'Admin\Factory\CategoriaLivroFactory',
             'livro_factory' => 'Admin\Factory\LivroFactory',
+            'usuario_factory' => 'Admin\Factory\UsuarioFactory',
         )
     ),
     'translator' => array(
@@ -103,7 +118,8 @@ return array(
         'invokables' => array(
             'Admin\Controller\Index' => Controller\IndexController::class,
             'Admin\Controller\CategoriaLivro' => Controller\CategoriaLivroController::class,
-            'Admin\Controller\Livro' => Controller\LivroController::class
+            'Admin\Controller\Livro' => Controller\LivroController::class,
+            'Admin\Controller\Usuario' => Controller\UsuarioController::class
         )
     ),
     'view_manager' => array(

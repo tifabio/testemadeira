@@ -42,7 +42,6 @@ class CategoriaLivroService
     public function delete($id)
     {
         $categoria = $this->em->find("Admin\Model\CategoriaLivro", $id);
-        $categoria->setId($id);
         $categoria->setAtivo(0);
         
         $this->em->merge($categoria);

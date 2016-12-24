@@ -71,7 +71,7 @@
                       <!-- Menu Footer-->
                       <li class="user-footer">
                         <div class="pull-left">
-                          <a href="#" class="btn btn-default btn-flat">Perfil</a>
+                          <a href="<?= $this->url('usuario', array('action' => 'perfil' , 'id' => '1')) ?>" class="btn btn-default btn-flat">Perfil</a>
                         </div>
                         <div class="pull-right">
                           <a href="<?= $this->url('login') ?>" class="btn btn-default btn-flat">Sair</a>
@@ -92,7 +92,7 @@
             <section class="sidebar">
               <!-- sidebar menu: : style can be found in sidebar.less -->
               <ul class="sidebar-menu">
-                <li><a href="#"><i class="fa fa-users"></i> <span>Usuários</span></a></li>
+                <li><a href="<?= $this->url('usuario') ?>"><i class="fa fa-users"></i> <span>Usuários</span></a></li>
                 <li><a href="#"><i class="fa fa-vcard"></i> <span>Locatários</span></a></li>
                 <li><a href="<?= $this->url('categorialivro') ?>"><i class="fa fa-list-ul"></i> <span>Categorias de livro</span></a></li>
                 <li><a href="<?= $this->url('livro') ?>"><i class="fa fa-book"></i> <span>Livros</span></a></li>

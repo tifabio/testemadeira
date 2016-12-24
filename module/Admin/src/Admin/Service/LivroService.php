@@ -61,7 +61,6 @@ class LivroService
     public function delete($id)
     {
         $livro = $this->em->find("Admin\Model\Livro", $id);
-        $livro->setId($id);
         $livro->setAtivo(0);
         
         $this->em->merge($livro);
