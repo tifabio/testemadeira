@@ -32,4 +32,18 @@ class Module
             ),
         );
     }
+    
+    public function getViewHelperConfig()
+    {
+        return array(
+            'factories' => array(
+                'formataCPF' => function($sm) {
+                    return new Helper\FormataCPF;
+                },
+                'formataData' => function($sm) {
+                    return new Helper\FormataData;
+                },
+            )
+        );   
+   }
 }

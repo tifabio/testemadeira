@@ -1,0 +1,48 @@
+<div class="box box-primary">
+    <div class="box-body">
+      <?= $this->flashMessenger()->render('success', array('alert', 'alert-dismissible', 'alert-success')); ?>
+      <?= $this->flashMessenger()->render('error', array('alert', 'alert-dismissible', 'alert-error')); ?>
+      <table id="example2" class="table table-bordered table-hover">
+        <thead>
+        <tr>
+          <th>#</th>
+          <th>Nome</th>
+          <th class="hidden-xs">Email</th>
+          <th>CPF</th>
+          <th class="hidden-xs">Data de Nascimento</th>
+          <th colspan="2">Ações</th>
+        </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($this->lista as $entity): ?>
+                <tr>
+                  <td><?php echo $entity->getId(); ?></td>
+                  <td><?php echo $entity->getNome(); ?></td>
+                  <td class="hidden-xs"><?php echo $entity->getEmail(); ?></td>
+                  <td><?php echo $this->formataCPF($entity->getCpf()); ?></td>
+                  <td class="hidden-xs"><?php echo $this->formataData($entity->getDatanascimento()); ?></td>
+                  <td>
+                      <a href="<?= $this->url('locatario', array('action' => 'editar' , 'id' => $entity->getId())) ?>" class="btn btn-xs btn-default">
+                        <i class="fa fa-edit"></i> <span class="hidden-xs">Editar</span>
+                      </a>
+                  </td>
+                  <td>
+                      <a href="<?= $this->url('locatario', array('action' => 'excluir' , 'id' => $entity->getId())) ?>" class="btn btn-xs btn-danger">
+                        <i class="fa fa-trash-o"></i> <span class="hidden-xs">Excluir</span>
+                      </a>
+                  </td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+        <tfoot>
+        <tr>
+            <th colspan="7">
+              <a href="<?= $this->url('locatario', array('action' => 'cadastrar')) ?>" class="btn btn-primary"><i class="fa fa-plus-square-o"></i> Novo locatário</a>
+            </th>
+        </tr>
+        </tfoot>
+      </table>
+    </div>
+    <!-- /.box-body -->
+</div>
+<!-- /.box -->

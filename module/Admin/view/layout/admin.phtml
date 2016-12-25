@@ -17,6 +17,7 @@
                         ->prependStylesheet($this->basePath('adminlte/dist/css/skins/_all-skins.min.css'))
                         ->prependStylesheet($this->basePath('adminlte/bootstrap/css/bootstrap.min.css'))
                         ->prependStylesheet($this->basePath('adminlte/plugins/datatables/dataTables.bootstrap.css')) 
+                        ->prependStylesheet($this->basePath('adminlte/plugins/datepicker/datepicker3.css')) 
                         ->prependStylesheet($this->basePath('css/style.css')) ?>
 
         <!-- Scripts -->
@@ -93,7 +94,7 @@
               <!-- sidebar menu: : style can be found in sidebar.less -->
               <ul class="sidebar-menu">
                 <li><a href="<?= $this->url('usuario') ?>"><i class="fa fa-users"></i> <span>Usuários</span></a></li>
-                <li><a href="#"><i class="fa fa-vcard"></i> <span>Locatários</span></a></li>
+                <li><a href="<?= $this->url('locatario') ?>"><i class="fa fa-vcard"></i> <span>Locatários</span></a></li>
                 <li><a href="<?= $this->url('categorialivro') ?>"><i class="fa fa-list-ul"></i> <span>Categorias de livro</span></a></li>
                 <li><a href="<?= $this->url('livro') ?>"><i class="fa fa-book"></i> <span>Livros</span></a></li>
                 <li><a href="#"><i class="fa fa-calendar"></i> <span>Empréstimos</span></a></li>
@@ -126,6 +127,8 @@
         <!-- ./wrapper -->
         <?php echo $this->inlineScript()->prependFile($this->basePath('adminlte/dist/js/app.min.js'))
                                         ->prependFile($this->basePath('adminlte/plugins/slimScroll/jquery.slimscroll.min.js'))
-                                        ->prependFile($this->basePath('adminlte/plugins/fastclick/fastclick.js')); ?>
+                                        ->prependFile($this->basePath('adminlte/plugins/fastclick/fastclick.js'))
+                                        ->prependFile($this->basePath('adminlte/plugins/input-mask/jquery.inputmask.js'))
+                                        ->prependFile($this->basePath('adminlte/plugins/datepicker/bootstrap-datepicker.js')); ?>
     </body>
 </html>

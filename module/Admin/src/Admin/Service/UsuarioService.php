@@ -58,6 +58,9 @@ class UsuarioService
         $usuario->setIdtipo($request->getPost("tipo"));
         $usuario->setNome($request->getPost("nome"));
         $usuario->setEmail($request->getPost("email"));
+        $usuario->setCpf($request->getPost("cpf"));
+        $data = (!empty($request->getPost("datanascimento"))) ? implode('-', array_reverse(explode('/', $request->getPost("datanascimento")))) : null;
+        $usuario->setDatanascimento($data);
         if (!empty($request->getPost("senha"))) {
             $usuario->setSenha(md5($request->getPost("senha")));
         }
@@ -90,6 +93,10 @@ class UsuarioService
         $form->get('tipo')->setValueOptions($this->getTipoValueOptions());
         $form->get('tipo')->setValue($usuario->getIdtipo());
         $form->get('email')->setValue($usuario->getEmail());
+        if($id == 0) {
+            $form->get('senha')->setAttribute('required', 'required');    
+            $form->get('senha')->setAttribute('placeholder', 'Preencha a senha do usuário');
+        }
         return $form;
     }
 }

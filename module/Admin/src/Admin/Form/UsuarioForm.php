@@ -58,7 +58,7 @@ class UsuarioForm extends Form
             'attributes' => array(
                 'id' => 'senha',
                 'class' => 'form-control',
-                'placeholder' => 'Preencha para alterar a senha do usuário'
+                'placeholder' => 'Preencha caso queira alterar a senha do usuário'
             ),
             'options' => array(
                 'label' => 'Senha',

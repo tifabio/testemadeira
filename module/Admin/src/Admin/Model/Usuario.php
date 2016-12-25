@@ -33,7 +33,7 @@ class Usuario
     private $cpf;
     
     /**
-    * @ORM\Column(type="date", length=11)
+    * @ORM\Column(type="string", length=10)
     */
     private $datanascimento;
     
