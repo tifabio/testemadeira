@@ -5,7 +5,7 @@
     
         <div class="info-box-content">
           <span class="info-box-text">Livros cadastrados</span>
-          <span class="info-box-number">50</span>
+          <span class="info-box-number"><?= $this->dashboard['cadastrados'] ?></span>
         </div>
         <!-- /.info-box-content -->
       </div>
@@ -18,7 +18,7 @@
     
         <div class="info-box-content">
           <span class="info-box-text">Livros emprestados</span>
-          <span class="info-box-number">28</span>
+          <span class="info-box-number"><?= $this->dashboard['emprestados'] ?></span>
         </div>
         <!-- /.info-box-content -->
       </div>
@@ -35,7 +35,7 @@
     
         <div class="info-box-content">
           <span class="info-box-text">Livros atrasados</span>
-          <span class="info-box-number">6</span>
+          <span class="info-box-number"><?= $this->dashboard['atrasados'] ?></span>
         </div>
         <!-- /.info-box-content -->
       </div>
@@ -48,8 +48,8 @@
     
         <div class="info-box-content">
           <span class="info-box-text"><b>Faturamento</b></span>
-          <span class="info-box-text">Novembro: R$ 85,00</span>
-          <span class="info-box-text">Dezembro: R$ 65,00</span>
+          <span class="info-box-text"><b><?=date('Y/m', strtotime("-1 month"))?></b>: <?=$this->formataMoeda($this->dashboard['faturamento'][date('Y/m', strtotime("-1 month"))])?></span>
+          <span class="info-box-text"><b><?=date('Y/m')?>:</b> <?=$this->formataMoeda($this->dashboard['faturamento'][date('Y/m')])?></span>
         </div>
         <!-- /.info-box-content -->
       </div>

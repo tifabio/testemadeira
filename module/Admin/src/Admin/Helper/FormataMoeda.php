@@ -6,7 +6,7 @@ class FormataMoeda extends AbstractHelper
 {
     public function __invoke($valor)
     {
-        $valor = (!empty($valor)) ? "R$ " . number_format($valor,2,",",".") : null;
+        $valor = (!empty($valor)) ? "R$ " . number_format($valor,2,",",".") : '0,00';
         return $valor;
     }
 }

@@ -132,6 +132,7 @@ return array(
             'usuario_factory' => 'Admin\Factory\UsuarioFactory',
             'locatario_factory' => 'Admin\Factory\LocatarioFactory',
             'emprestimo_factory' => 'Admin\Factory\EmprestimoFactory',
+            'index_factory' => 'Admin\Factory\IndexFactory',
         )
     ),
     'translator' => array(

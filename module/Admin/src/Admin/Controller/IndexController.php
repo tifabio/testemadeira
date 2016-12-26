@@ -13,6 +13,16 @@ class IndexController extends AbstractActionController
     {
         $this->layout()->setVariable('title', 'Dashboard');
         
-        return new ViewModel();
+        $service = $this->getServiceLocator()->get('index_factory');
+        
+        $dashboard = array();
+        
+        $dashboard['cadastrados'] = $service->getQtdLivrosCadastrados();
+        $dashboard['emprestados'] = $service->getQtdLivrosEmprestados();
+        $dashboard['atrasados'] = $service->getQtdLivrosAtrasados();
+        $dashboard['faturamento'][date('Y/m', strtotime("-1 month"))] = $service->getFaturamento(date('Y/m', strtotime("-1 month")));
+        $dashboard['faturamento'][date('Y/m')] = $service->getFaturamento(date('Y/m'));
+
+        return new ViewModel(array('dashboard' => $dashboard));
     }
 }
