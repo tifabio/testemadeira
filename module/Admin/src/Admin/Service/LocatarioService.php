@@ -30,8 +30,7 @@ class LocatarioService extends UsuarioService
         $form->get('nome')->setValue($locatario->getNome());
         $form->get('email')->setValue($locatario->getEmail());
         $form->get('cpf')->setValue($locatario->getCpf());
-        $data = (!empty($locatario->getDatanascimento())) ? implode('/', array_reverse(explode('-', $locatario->getDatanascimento()))) : null;
-        $form->get('datanascimento')->setValue($data);
+        $form->get('datanascimento')->setValue($locatario->getDatanascimento());
         if($id == 0) {
             $form->get('senha')->setAttribute('required', 'required');    
             $form->get('senha')->setAttribute('placeholder', 'Preencha a senha do locatário');

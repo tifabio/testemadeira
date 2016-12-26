@@ -1,0 +1,26 @@
+<div class="box box-primary">
+    <div class="box-body">
+        <?= $this->form()->openTag($form); ?>
+          <div class="box-body">
+            <div class="form-group">
+              <?= $this->formRow($form->get('usuario')) ?>
+            </div>
+            <div class="form-group">
+              <?= $this->formRow($form->get('livro')) ?>
+            </div>
+            <div class="form-group">
+              <?= $this->formRow($form->get('dataprevista')) ?>
+            </div>
+          </div>
+          
+          <!-- /.box-body -->
+        
+          <div class="box-footer">
+            <?= $this->formButton($form->get('submit')) ?>
+            <a href="<?= $this->url('emprestimo')?>" class="btn btn-default pull-right"><i class="fa fa-close"></i> Cancelar</a>
+          </div>
+        <?= $this->form()->closeTag(); ?>
+    </div>
+    <!-- /.box-body -->
+</div>
+<!-- /.box -->

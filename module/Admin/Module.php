@@ -43,6 +43,9 @@ class Module
                 'formataData' => function($sm) {
                     return new Helper\FormataData;
                 },
+                'formataMoeda' => function($sm) {
+                    return new Helper\FormataMoeda;
+                },
             )
         );   
    }

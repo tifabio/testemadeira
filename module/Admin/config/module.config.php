@@ -74,6 +74,20 @@ return array(
                 ),
             ),
             
+            'emprestimo' => array(
+                'type'    => 'segment',
+                'options' => array(
+                    'route'    => '/admin/emprestimo[/:action][/:id]',
+                    'constraints' => array(
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Emprestimo\Controller\Index',
+                        'action'     => 'index',
+                    ),
+                ),
+            ),
+            
             // The following is a route to simplify getting started creating
             // new controllers and actions without needing to create a new
             // module. Simply drop new controllers in, and you can access them
@@ -117,6 +131,7 @@ return array(
             'livro_factory' => 'Admin\Factory\LivroFactory',
             'usuario_factory' => 'Admin\Factory\UsuarioFactory',
             'locatario_factory' => 'Admin\Factory\LocatarioFactory',
+            'emprestimo_factory' => 'Admin\Factory\EmprestimoFactory',
         )
     ),
     'translator' => array(
@@ -135,7 +150,8 @@ return array(
             'Admin\Controller\CategoriaLivro' => Controller\CategoriaLivroController::class,
             'Admin\Controller\Livro' => Controller\LivroController::class,
             'Admin\Controller\Usuario' => Controller\UsuarioController::class,
-            'Admin\Controller\Locatario' => Controller\LocatarioController::class
+            'Admin\Controller\Locatario' => Controller\LocatarioController::class,
+            'Admin\Controller\Emprestimo' => Controller\EmprestimoController::class
         )
     ),
     'view_manager' => array(

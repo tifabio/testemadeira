@@ -35,7 +35,7 @@ class LocatarioForm extends UsuarioForm
         
         $this->add(array(
             'name' => 'datanascimento',
-            'type' => 'Text',
+            'type' => 'Date',
             'attributes' => array(
                 'id' => 'datanascimento',
                 'class' => 'form-control',
