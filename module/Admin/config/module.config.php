@@ -198,6 +198,15 @@ return array(
                     'Admin\Model' => 'app_driver'
                 )
             )
-        )
+        ),
+        'authentication' => array(
+            'orm_default' => array(
+                'object_manager' => 'Doctrine\ORM\EntityManager',
+                'identity_class' => 'Admin\Model\Usuario',
+                'identity_property' => 'email',
+                'credential_property' => 'senha',
+                'credential_callable' => 'Admin\Controller\UsuarioController::auth'
+            ),
+        ),
     )
 );

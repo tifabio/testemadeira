@@ -9,6 +9,10 @@ use Zend\View\Model\ViewModel;
 
 class UsuarioController extends AbstractActionController
 {
+    public static function auth($usuario, $inputPassword) 
+    {
+        return ($inputPassword == $usuario->getSenha());
+    }
     
     public function indexAction()
     {

@@ -1,3 +1,4 @@
+<?php if(!$this->identity()) return; ?>
 <?php echo $this->doctype(); ?>
 
 <html lang="en">
@@ -55,23 +56,23 @@
                   <!-- User Account: style can be found in dropdown.less -->
                   <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                      <img src="https://www.gravatar.com/avatar/0f5c019f95cb3defc49d0ea8215a15d4?s=160" class="user-image" alt="User Image">
-                      <span class="hidden-xs">Fabio Andrei</span>
+                      <img src="https://www.gravatar.com/avatar/<?=md5($this->identity()->getEmail())?>?s=160" class="user-image" alt="User Image">
+                      <span class="hidden-xs"><?=$this->identity()->getNome()?></span>
                     </a>
                     <ul class="dropdown-menu">
                       <!-- User image -->
                       <li class="user-header">
-                        <img src="https://www.gravatar.com/avatar/0f5c019f95cb3defc49d0ea8215a15d4?s=160" class="img-circle" alt="User Image">
+                        <img src="https://www.gravatar.com/avatar/<?=md5($this->identity()->getEmail())?>?s=160" class="img-circle" alt="User Image">
         
                         <p>
-                          Fabio Andrei
-                          <small>tifabio@gmail.com</small>
+                          <?=$this->identity()->getNome()?>
+                          <small><?=$this->identity()->getEmail()?></small>
                         </p>
                       </li>
                       <!-- Menu Footer-->
                       <li class="user-footer">
                         <div class="pull-left">
-                          <a href="<?= $this->url('usuario', array('action' => 'perfil' , 'id' => '1')) ?>" class="btn btn-default btn-flat">Perfil</a>
+                          <a href="<?= $this->url(($this->identity()->getIdtipo() == 3) ? 'locatario' : 'usuario', array('action' => 'perfil' , 'id' => $this->identity()->getId())) ?>" class="btn btn-default btn-flat">Perfil</a>
                         </div>
                         <div class="pull-right">
                           <a href="<?= $this->url('login') ?>" class="btn btn-default btn-flat">Sair</a>

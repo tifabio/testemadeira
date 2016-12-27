@@ -15,6 +15,37 @@ class Module
         $moduleRouteListener = new ModuleRouteListener();
         $moduleRouteListener->attach($eventManager);
         $e->getViewModel()->setTemplate('layout/admin');
+
+        $eventManager->attach(MvcEvent::EVENT_DISPATCH,
+            function($e) {
+                $auth = $e->getApplication()->getServiceManager()->get('Zend\Authentication\AuthenticationService');
+                
+                $match = $e->getRouteMatch();
+                
+                $name = $match->getMatchedRouteName();
+                
+                $whitelist = array('login', 'home');
+                
+                // Route is whitelisted
+                $name = $match->getMatchedRouteName();
+                if (in_array($name, $whitelist)) {
+                    return;
+                }
+
+                if (!$auth->hasIdentity()) {
+                    $router   = $e->getRouter();
+                    $url      = $router->assemble(array(), array(
+                        'name' => 'login'
+                    ));
+        
+                    $response = $e->getResponse();
+                    $response->getHeaders()->addHeaderLine('Location', $url);
+                    $response->setStatusCode(302);
+        
+                    return $response;
+                }
+            }
+        );
     }
 
     public function getConfig()
