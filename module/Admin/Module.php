@@ -16,7 +16,7 @@ class Module
         $moduleRouteListener->attach($eventManager);
         $e->getViewModel()->setTemplate('layout/admin');
 
-        $eventManager->attach(MvcEvent::EVENT_DISPATCH,
+        $eventManager->attach(MvcEvent::EVENT_ROUTE,
             function($e) {
                 $auth = $e->getApplication()->getServiceManager()->get('Zend\Authentication\AuthenticationService');
                 
