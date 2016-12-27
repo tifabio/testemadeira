@@ -54,7 +54,7 @@ class IndexService
                     count(e.id) as quantidade 
                 FROM Admin\Model\Emprestimo e 
                 WHERE (e.datadevolucao > e.dataprevista 
-                        OR (e.datadevolucao IS NULL AND CURRENT_TIMESTAMP() > e.dataprevista))";
+                        OR (e.datadevolucao IS NULL AND CURRENT_DATE() > e.dataprevista))";
                 
         if($id_usuario > 0) {
             $sql .= " AND e.idusuario = " . $id_usuario;

@@ -11,7 +11,7 @@ class UsuarioController extends AbstractActionController
 {
     public static function auth($usuario, $inputPassword) 
     {
-        return ($inputPassword == $usuario->getSenha());
+        return ($inputPassword == $usuario->getSenha() && $usuario->getAtivo());
     }
     
     public function indexAction()
