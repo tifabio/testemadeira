@@ -28,10 +28,18 @@ class IndexService
         return $retorno;
     }
     
-    public function getQtdLivrosEmprestados()
+    public function getQtdLivrosEmprestados($id_usuario = 0)
     {
-        $query = $this->em->createQuery('SELECT count(e.id) as quantidade FROM Admin\Model\Emprestimo e 
-                                         WHERE e.datadevolucao IS NULL');
+        $sql = "SELECT 
+                    count(e.id) as quantidade 
+                FROM Admin\Model\Emprestimo e 
+                WHERE e.datadevolucao IS NULL";
+                                         
+        if($id_usuario > 0) {
+            $sql .= " AND e.idusuario = " . $id_usuario;
+        }
+        
+        $query = $this->em->createQuery($sql);
                 
         $result = $query->getSingleResult();
         
@@ -40,10 +48,19 @@ class IndexService
         return $retorno;
     }
     
-    public function getQtdLivrosAtrasados()
+    public function getQtdLivrosAtrasados($id_usuario = 0)
     {
-        $query = $this->em->createQuery('SELECT count(e.id) as quantidade FROM Admin\Model\Emprestimo e 
-                                         WHERE e.datadevolucao > e.dataprevista');
+        $sql = "SELECT 
+                    count(e.id) as quantidade 
+                FROM Admin\Model\Emprestimo e 
+                WHERE (e.datadevolucao > e.dataprevista 
+                        OR (e.datadevolucao IS NULL AND CURRENT_TIMESTAMP() > e.dataprevista))";
+                
+        if($id_usuario > 0) {
+            $sql .= " AND e.idusuario = " . $id_usuario;
+        }
+        
+        $query = $this->em->createQuery($sql);
                 
         $result = $query->getSingleResult();
         

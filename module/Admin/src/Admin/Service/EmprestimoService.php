@@ -19,12 +19,21 @@ class EmprestimoService
         $this->em = $em;
     }    
     
-    public function getAll($ativos = true)
+    public function getAll($id_usuario = 0, $ativos = true)
     {
-        $query = $this->em->createQuery('SELECT e, l, u FROM Admin\Model\Emprestimo e 
-                                         JOIN e.livro l
-                                         JOIN e.usuario u
-                                         ORDER BY e.dataprevista, e.id');
+        $sql = "SELECT 
+                    e, l, u FROM 
+                Admin\Model\Emprestimo e 
+                JOIN e.livro l
+                JOIN e.usuario u";
+                                         
+        if($id_usuario > 0) {
+            $sql .= " WHERE e.idusuario = " . $id_usuario;
+        }
+        
+        $sql .= " ORDER BY e.dataprevista, e.id";
+        
+        $query = $this->em->createQuery($sql);
         return $query->getResult();                                 
     }
     
@@ -112,10 +121,20 @@ class EmprestimoService
         $this->em->flush();
     }
     
-    public function getForm()
+    public function getForm($id_usuario = 0)
     {
         $form = new EmprestimoForm();
-        $form->get('usuario')->setValueOptions($this->getUsuarioValueOptions());
+        if($id_usuario == 0) {
+            $form->get('usuario')->setValueOptions($this->getUsuarioValueOptions());
+        } else {
+            $form->add(array(
+                'name' => 'usuario',
+                'type' => 'Hidden',
+                'attributes' => array(
+                    'value' => $id_usuario
+                )
+            ));
+        }
         $form->get('livro')->setValueOptions($this->getLivroValueOptions());
         return $form;
     }

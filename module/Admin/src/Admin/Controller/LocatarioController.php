@@ -12,6 +12,8 @@ class LocatarioController extends AbstractActionController
     
     public function indexAction()
     {
+        if($this->identity()->getIdtipo() > 2) $this->redirect()->toRoute('admin');
+        
         $service = $this->getServiceLocator()->get('locatario_factory');
         $lista = $service->getAll();
         
@@ -22,6 +24,8 @@ class LocatarioController extends AbstractActionController
     
     public function cadastrarAction()
     {
+        if($this->identity()->getIdtipo() > 2) $this->redirect()->toRoute('admin');
+        
         try {
             $this->layout()->setVariable('title', 'Novo locatário');
             
@@ -44,6 +48,8 @@ class LocatarioController extends AbstractActionController
     
     public function editarAction()
     {
+        if($this->identity()->getIdtipo() > 2) $this->redirect()->toRoute('admin');
+        
         try {
             $this->layout()->setVariable('title', 'Editar locatário');
             
@@ -71,7 +77,7 @@ class LocatarioController extends AbstractActionController
     public function perfilAction()
     {
         try {
-            $id = $this->params()->fromRoute("id", 0);
+            $id = (int)$this->identity()->getId();
             
             if($id == 0) return $this->redirect()->toRoute('admin');
             
@@ -96,6 +102,8 @@ class LocatarioController extends AbstractActionController
     
     public function excluirAction()
     {
+        if($this->identity()->getIdtipo() > 2) $this->redirect()->toRoute('admin');
+        
         try {
             $service = $this->getServiceLocator()->get('locatario_factory');
             

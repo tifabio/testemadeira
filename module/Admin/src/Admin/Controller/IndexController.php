@@ -15,11 +15,14 @@ class IndexController extends AbstractActionController
         
         $service = $this->getServiceLocator()->get('index_factory');
         
+        // se for usuario do tipo locatário, traz a sua quantidade de livros (emprestados/atrasados)
+        $id_locatario = ($this->identity()->getIdtipo() == 3) ? $this->identity()->getId() : 0;
+        
         $dashboard = array();
         
         $dashboard['cadastrados'] = $service->getQtdLivrosCadastrados();
-        $dashboard['emprestados'] = $service->getQtdLivrosEmprestados();
-        $dashboard['atrasados'] = $service->getQtdLivrosAtrasados();
+        $dashboard['emprestados'] = $service->getQtdLivrosEmprestados($id_locatario);
+        $dashboard['atrasados'] = $service->getQtdLivrosAtrasados($id_locatario);
         $dashboard['faturamento'][date('Y/m', strtotime("-1 month"))] = $service->getFaturamento(date('Y/m', strtotime("-1 month")));
         $dashboard['faturamento'][date('Y/m')] = $service->getFaturamento(date('Y/m'));
 

@@ -12,6 +12,8 @@ class LivroController extends AbstractActionController
     
     public function indexAction()
     {
+        if($this->identity()->getIdtipo() > 2) $this->redirect()->toRoute('admin');
+        
         $service = $this->getServiceLocator()->get('livro_factory');
         $lista = $service->getAll();
         
@@ -22,6 +24,8 @@ class LivroController extends AbstractActionController
     
     public function cadastrarAction()
     {
+        if($this->identity()->getIdtipo() > 2) $this->redirect()->toRoute('admin');
+        
         try {
             $this->layout()->setVariable('title', 'Novo livro');
             
@@ -44,6 +48,8 @@ class LivroController extends AbstractActionController
     
     public function editarAction()
     {
+        if($this->identity()->getIdtipo() > 2) $this->redirect()->toRoute('admin');
+        
         try {
             $this->layout()->setVariable('title', 'Editar livro');
             
@@ -70,6 +76,8 @@ class LivroController extends AbstractActionController
     
     public function excluirAction()
     {
+        if($this->identity()->getIdtipo() > 2) $this->redirect()->toRoute('admin');
+        
         try {
             $service = $this->getServiceLocator()->get('livro_factory');
             

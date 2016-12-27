@@ -16,6 +16,8 @@ class UsuarioController extends AbstractActionController
     
     public function indexAction()
     {
+        if($this->identity()->getIdtipo() > 1) $this->redirect()->toRoute('admin');
+        
         $service = $this->getServiceLocator()->get('usuario_factory');
         $lista = $service->getAll();
         
@@ -26,6 +28,8 @@ class UsuarioController extends AbstractActionController
     
     public function cadastrarAction()
     {
+        if($this->identity()->getIdtipo() > 1) $this->redirect()->toRoute('admin');
+        
         try {
             $this->layout()->setVariable('title', 'Novo usuário');
             
@@ -48,6 +52,8 @@ class UsuarioController extends AbstractActionController
     
     public function editarAction()
     {
+        if($this->identity()->getIdtipo() > 1) $this->redirect()->toRoute('admin');
+        
         try {
             $this->layout()->setVariable('title', 'Editar usuário');
             
@@ -74,8 +80,10 @@ class UsuarioController extends AbstractActionController
     
     public function perfilAction()
     {
+        if($this->identity()->getIdtipo() > 2) $this->redirect()->toRoute('admin');
+        
         try {
-            $id = $this->params()->fromRoute("id", 0);
+            $id = (int)$this->identity()->getId();
             
             if($id == 0) return $this->redirect()->toRoute('admin');
             
@@ -100,6 +108,8 @@ class UsuarioController extends AbstractActionController
     
     public function excluirAction()
     {
+        if($this->identity()->getIdtipo() > 1) $this->redirect()->toRoute('admin');
+        
         try {
             $service = $this->getServiceLocator()->get('usuario_factory');
             

@@ -12,8 +12,11 @@ class EmprestimoController extends AbstractActionController
     
     public function indexAction()
     {
+        // se for usuario do tipo locatário, traz os empréstimos dele
+        $id_locatario = ($this->identity()->getIdtipo() == 3) ? $this->identity()->getId() : 0;
+        
         $service = $this->getServiceLocator()->get('emprestimo_factory');
-        $lista = $service->getAll();
+        $lista = $service->getAll($id_locatario);
         
         $this->layout()->setVariable('title', 'Empréstimos');
         
@@ -22,6 +25,9 @@ class EmprestimoController extends AbstractActionController
     
     public function retirarAction()
     {
+        // se for usuario do tipo locatário, traz o formulário adaptado
+        $id_locatario = ($this->identity()->getIdtipo() == 3) ? $this->identity()->getId() : 0;
+        
         try {
             $this->layout()->setVariable('title', 'Novo empréstimo');
             
@@ -35,7 +41,7 @@ class EmprestimoController extends AbstractActionController
                 return $this->redirect()->toRoute('emprestimo');    
             }
             
-            return new ViewModel(array('form' => $service->getForm()));
+            return new ViewModel(array('form' => $service->getForm($id_locatario)));
         } catch (\Exception $e) {
             $this->flashMessenger()->addErrorMessage('Ocorreu um erro: ' . $e->getMessage());
             return $this->redirect()->toRoute('emprestimo');
